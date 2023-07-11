@@ -7,6 +7,5 @@ transformers 3.4.0
 pytorch 1.7.1
 
 ## Train
-
-
-
+cd CADA/friendsqa/
+sh CADA.sh
