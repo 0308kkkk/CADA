@@ -83,32 +83,6 @@ def get_raw_scores(examples, preds):
         prediction = preds[qas_id]
         exact_scores[qas_id] = max(compute_exact(a, prediction) for a in gold_answers)
         f1_scores[qas_id] = max(compute_f1(a, prediction) for a in gold_answers)
-
-        # if f1_scores[qas_id]>=0.5:
-        #     print()
-        #     print('f1>=0.5!!')
-        #     for uidx, utterance in enumerate(example.contents_list):
-        #         print(utterance)
-        #     print(example.question)
-        #     print(gold_answers)
-        #     print(prediction)
-
-        if f1_scores[qas_id]<0.5:
-            false_json[qas_id] = {'qid':qas_id, 'edus':example.contents_list, 'question':example.question, 'gold_answers':gold_answers,'pred_answer':prediction}
-            # print()
-            # print()
-            # print('f1<0.5!!')
-            # for uidx, utterance in enumerate(example.contents_list):
-            #     print(utterance)
-            # print(example.question)
-            # print(gold_answers)
-            # print(prediction)
-            # print("\n")
-    with open('/SISDC_GPFS/Home_SE/hy-suda/lyl/MPDM/friendsqa/output/bart/bestmodel/pred_test_false.json', "w") as writer:
-            writer.write(json.dumps(false_json, indent=4) + "\n")
-    # print(havep1, havep0, havep, falsenum, flasep)
-    # print(havep1/havep, havep0/havep, falsenum/len(examples), flasep/falsenum)
-    
     return exact_scores, f1_scores
 
 
